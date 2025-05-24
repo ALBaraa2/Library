@@ -7,7 +7,7 @@
         @csrf
         <div class="mb-6">
             <label for="title" class="block text-gray-700 font-semibold mb-2 text-lg">Title</label>
-            <input type="text" id="title" name="title" required
+            <input type="text" id="title" name="title" required placeholder="Enter a title of the book..."
             class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
         </div>
 
@@ -58,13 +58,13 @@
 
         <div class="mb-6">
             <label for="quantity" class="block text-gray-700 font-semibold mb-2 text-lg">Quantity</label>
-            <input type="number" id="quantity" name="quantity" required
+            <input type="number" id="quantity" name="quantity" required placeholder="Enter a quantity..."
             class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
         </div>
 
         <div class="mb-6">
             <label for="isbn" class="block text-gray-700 font-semibold mb-2 text-lg">ISBN</label>
-            <input type="text" id="isbn" name="isbn" pattern="\d{10}|\d{13}" title="ISBN must be a 10 or 13-digit number" required
+            <input type="text" id="isbn" name="isbn" pattern="\d{10}|\d{13}" title="ISBN must be a 10 or 13-digit number" required placeholder="Enter ISBN..."
             class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
         </div>
 
@@ -94,7 +94,7 @@
 
         <div class="mb-6">
             <label for="total_pages" class="block text-gray-700 font-semibold mb-2 text-lg">Number of Pages</label>
-            <input type="number" id="total_pages" name="total_pages" required
+            <input type="number" id="total_pages" name="total_pages" required placeholder="Enter total pages..."
             class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
         </div>
 
