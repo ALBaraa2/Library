@@ -52,7 +52,18 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'author_id' => 'required|exists:authors,id',
+            'publisher_id' => 'required|exists:publishers,id',
+            'published_at' => 'required|date',
+            'isbn' => 'nullable|string|max:20',
+            'description' => 'nullable|string',
+        ]);
+
+        $book = Book::create($request->all());
+
+        return redirect()->route('books.index')->with('success', 'Book created successfully.');
     }
 
     /**
