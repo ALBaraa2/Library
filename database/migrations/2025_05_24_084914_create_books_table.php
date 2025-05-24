@@ -14,16 +14,19 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('author');   
-            $table->string('publisher');
+            $table->unsignedInteger('author_id');   
+            $table->unsignedInteger('publisher_id');
             $table->string('description')->nullable();
+            $table->string('genre')->nullable();
             $table->integer('quantity');
             $table->unsignedBigInteger('isbn')->unique();
             $table->date('publication_date');
-            $table->unsignedInteger('total_pages');
             $table->string('language');
-            $table->float('rating');
+            $table->unsignedInteger('total_pages');
             $table->timestamps();
+
+            $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
+            $table->foreign('publisher_id')->references('id')->on('publishers')->onDelete('cascade');
         });
     }
 
@@ -32,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('book');
+        Schema::dropIfExists('books');
     }
 };
