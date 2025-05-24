@@ -14,7 +14,8 @@
     }
 
     .btn-cancel {
-      @apply bg-red-500 hover:bg-red-600 text-white rounded-lg px-4 py-2 transition duration-300;
+      @apply bg-white rounded-md px-4 py-2 text-center font-medium text-slate-500 shadow-sm ring-1 ring-slate-700/10 h-10;
+      @apply hover:bg-red-50 hover:text-red-500 hover:ring-red-500 transition duration-300;
     }
 
     .link {
