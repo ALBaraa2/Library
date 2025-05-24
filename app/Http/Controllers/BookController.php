@@ -10,9 +10,28 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $title = $request->input('title');
+        $filter = $request->input('filter', '');
+
+        $books =  Book::when(
+            $title, 
+            fn ($query, $title) => $query->title($title)
+        );
+
+        $books = match ($filter) {
+            'popular_last_month' => $books->popularLastMonth(),
+            'popular_last_6months' => $books->popularLast6Months(),
+            'highest_rated_last_month' => $books->highestRatedLastMonth(),
+            'highest_rated_last_6months' => $books->highestRatedLast6Months(),
+            default => $books->latest()->withAvgRating()->withReviewsCount()
+        };
+
+        $cacheKey = 'books:' . $filter . ':' . $title . ':page:' . $request->input('page', 1);
+        $books = cache()->remember($cacheKey, 3600, fn() => $books->paginate(10));
+
+        return view('books.index', compact('books'));
     }
 
     /**
