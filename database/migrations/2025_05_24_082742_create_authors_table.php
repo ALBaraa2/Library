@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('authors', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('bio')->nullable();
+            $table->text('bio')->nullable(); // Changed to `text` for longer entries
             $table->string('contact_info')->nullable();
             $table->date('birth_date')->nullable();
             $table->string('nationality')->nullable();
-            $table->string('website')->nullable();
-            $table->string('awards')->nullable();
+            $table->string('website', 500)->nullable(); // Increased size for URLs
+            $table->string('awards', 500)->nullable(); // Increased size for award names
             $table->timestamps();
         });
     }

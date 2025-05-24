@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('title');
             $table->unsignedInteger('author_id');   
             $table->unsignedInteger('publisher_id');
-            $table->string('description')->nullable();
-            $table->string('genre')->nullable();
+            $table->text('description')->nullable();
+            $table->string('genre', 100)->nullable();
             $table->integer('quantity');
             $table->unsignedBigInteger('isbn')->unique();
             $table->date('publication_date');
-            $table->string('language');
+            $table->string('language', 50);
             $table->unsignedInteger('total_pages');
             $table->timestamps();
 
