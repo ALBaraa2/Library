@@ -56,9 +56,13 @@ class BookController extends Controller
             'title' => 'required|string|max:255',
             'author_id' => 'required|exists:authors,id',
             'publisher_id' => 'required|exists:publishers,id',
-            'published_at' => 'required|date',
-            'isbn' => 'nullable|string|max:20',
             'description' => 'nullable|string',
+            'genre' => 'nullable|string',
+            'quantity' => 'required|integer|min:1',
+            'isbn' => 'required|string|max:20|unique:books,isbn',
+            'publication_date' => 'required|date',
+            'language' => 'nullable|string|max:50',
+            'total_pages' => 'nullable|integer|min:1',
         ]);
 
         $book = Book::create($request->all());

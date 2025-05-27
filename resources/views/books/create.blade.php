@@ -1,13 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+
+@include('alerts.alert')
+
 <div class="container">
     <h1 class="text-4xl font-bold text-gray-800 text-center mt-5 mb-5 border-b-2 border-blue-500 pb-2">Add a New Book</h1>
     <form action="{{ route('books.store') }}" method="POST">
         @csrf
         <div class="mb-6">
             <label for="title" class="block text-gray-700 font-semibold mb-2 text-lg">Title</label>
-            <input type="text" id="title" name="title" required placeholder="Enter a title of the book..."
+            <input type="text" id="title" name="title" value="{{ old('title') }}" required placeholder="Enter a title of the book..."
             class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
         </div>
 
@@ -23,8 +26,8 @@
         </div>
 
         <div class="mb-6">
-            <label for="publisher" class="block text-gray-700 font-semibold mb-2 text-lg">Publisher</label>
-            <select id="publisher" name="publish_id" required
+            <label for="publisher_id" class="block text-gray-700 font-semibold mb-2 text-lg">Publisher</label>
+            <select id="publisher_id" name="publisher_id" required
             class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
             <option value="" disabled selected>Select a Publisher</option>
             @foreach ($publishers as $publisher)
@@ -35,7 +38,7 @@
 
         <div class="mb-6">
             <label for="description" class="block text-gray-700 font-semibold mb-2 text-lg">Description</label>
-            <textarea id="description" name="description" rows="3" required placeholder="Enter a brief description..."
+            <textarea id="description" name="description" rows="3" value="{{ old('description') }}" placeholder="Enter a brief description..."
             class="w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
         </div>
 
@@ -58,19 +61,19 @@
 
         <div class="mb-6">
             <label for="quantity" class="block text-gray-700 font-semibold mb-2 text-lg">Quantity</label>
-            <input type="number" id="quantity" name="quantity" required placeholder="Enter a quantity..."
+            <input type="number" id="quantity" name="quantity" value="{{ old('quantity') }}" required placeholder="Enter a quantity..."
             class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
         </div>
 
         <div class="mb-6">
             <label for="isbn" class="block text-gray-700 font-semibold mb-2 text-lg">ISBN</label>
-            <input type="text" id="isbn" name="isbn" pattern="\d{10}|\d{13}" title="ISBN must be a 10 or 13-digit number" required placeholder="Enter ISBN..."
+            <input type="text" id="isbn" name="isbn" pattern="\d{10}|\d{13}" title="ISBN must be a 10 or 13-digit number" value="{{ old('isbn') }}" required placeholder="Enter ISBN..."
             class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
         </div>
 
         <div class="mb-6">
             <label for="publication_date" class="block text-gray-700 font-semibold mb-2 text-lg">Publish Date</label>
-            <input type="date" id="publication_date" name="publication_date" required
+            <input type="date" id="publication_date" name="publication_date" required value="{{ old('publication_date') }}"
             class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
         </div>
 
@@ -94,7 +97,7 @@
 
         <div class="mb-6">
             <label for="total_pages" class="block text-gray-700 font-semibold mb-2 text-lg">Number of Pages</label>
-            <input type="number" id="total_pages" name="total_pages" required placeholder="Enter total pages..."
+            <input type="number" id="total_pages" name="total_pages"  value="{{ old('total_pages') }}" required placeholder="Enter total pages..."
             class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
         </div>
 

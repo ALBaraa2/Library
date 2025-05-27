@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use App\Models\Book;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -18,17 +19,30 @@ class ReviewController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Book $book)
     {
-        //
+        return view('books.reviews.create', compact('book'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Book $book)
     {
-        //
+        $request->validate([
+            'rating' => 'required|integer|min:1|max:5',
+            'comment' => 'required|string|max:1000',
+        ]);
+
+        // Merge user_id and book_id into the request data
+        $reviewData = $request->only(['rating', 'comment']);
+        $reviewData['user_id'] = 3; // Replace with `auth()->id()` in real application
+        $reviewData['book_id'] = $book->id;
+
+        // Create the review
+        Review::create($reviewData);
+
+        return redirect()->route('books.show', $book)->with('success', 'Review created successfully!');
     }
 
     /**
