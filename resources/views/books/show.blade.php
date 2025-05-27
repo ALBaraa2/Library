@@ -52,7 +52,7 @@
                     <div class="mb-3">
                         <div class="flex items-center justify-between mb-2">
                             <div class="flex items-center gap-2">
-                                <span class="text-lg font-semibold text-blue-600">
+                                <span class="text-lg font-semibold text-gray-600">
                                     {{ $review->user->name ?? 'Anonymous' }}
                                 </span>
                                 <span class="text-gray-500 text-sm">
