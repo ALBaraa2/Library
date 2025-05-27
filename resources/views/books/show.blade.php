@@ -12,7 +12,9 @@
         <div class="text-gray-600 leading-relaxed mb-6">{{ $book->description }}</div>
         <div class="book-rating flex items-center">
             <div class="mr-2 text-sm font-medium text-slate-700">
-            {{ number_format($rating, 1) }}
+                @if ($rating != null)
+                    {{ number_format($rating, 1) }}
+                @endif
             <x-star-rating :rating="$rating ?? 0"/>
             </div>
             <span class="book-review-count text-sm text-gray-500">
@@ -50,12 +52,12 @@
             <div>
                 <div class="mb-2 flex items-center justify-between">
                     <div class="font-semibold">
-                        <x-star-rating :rating = {{$review->rating}} />
+                        <x-star-rating :rating="$review->rating" />
                     </div>
                 <div class="book-review-count">
                     {{ $review->created_at->format('M j, Y') }}</div>
                 </div>
-                <p class="text-gray-700">{{ $review->review }}</p>
+                <p class="text-gray-700">{{ $review->comment }}</p>
                 <form action="{{ route('books.reviews.destroy', [$book, $review]) }}" method="POST" class="mt-2">
                     @csrf
                     @method('DELETE')
