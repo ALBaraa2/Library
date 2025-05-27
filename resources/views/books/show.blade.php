@@ -40,38 +40,48 @@
         <button type="submit" class="btn-cancel">Delete this book!</button>
     </form>
 
-    <div class="mb-4">
+    <div class="mb-10">
 
     </div>
 
-    <div>
-        <h2 class="mb-4 text-xl font-semibold">Reviews</h2>
-        <ul>
-        @forelse ($book->reviews as $review)
-            <li class="book-item mb-4">
-            <div>
-                <div class="mb-2 flex items-center justify-between">
-                    <div class="font-semibold">
-                        <x-star-rating :rating="$review->rating" />
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="mb-4 text-2xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2">Reviews</h2>
+        <ul class="space-y-6">
+            @forelse ($book->reviews as $review)
+                <li class="p-4 bg-gray-50 rounded-lg shadow-sm">
+                    <div class="mb-3">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-2">
+                                <span class="text-lg font-semibold text-blue-600">
+                                    {{ $review->user->name ?? 'Anonymous' }}
+                                </span>
+                                <span class="text-gray-500 text-sm">
+                                    • {{ $review->created_at->format('M j, Y') }}
+                                </span>
+                            </div>
+                            <div class="book-rating">
+                                <x-star-rating :rating="$review->rating" />
+                            </div>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">{{ $review->comment }}</p>
                     </div>
-                <div class="book-review-count">
-                    {{ $review->created_at->format('M j, Y') }}</div>
-                </div>
-                <p class="text-gray-700">{{ $review->comment }}</p>
-                <form action="{{ route('books.reviews.destroy', [$book, $review]) }}" method="POST" class="mt-2">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="text-red-600 hover:text-red-800">Delete Review</button>
-                </form>
-            </div>
-            </li>
-        @empty
-            <li class="mb-4">
-            <div class="empty-book-item">
-                <p class="empty-text text-lg font-semibold">No reviews yet</p>
-            </div>
-            </li>
-        @endforelse
+                    <form action="{{ route('books.reviews.destroy', [$book, $review]) }}" method="POST" class="text-right">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                            class="px-4 py-2 text-sm font-semibold text-red-600 bg-red-100 border border-red-200 rounded-lg shadow-sm transition duration-200 hover:bg-red-200 hover:border-red-300 hover:text-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1">
+                            Delete Review
+                        </button>
+                    </form>
+
+                </li>
+            @empty
+                <li class="p-4 bg-gray-50 rounded-lg shadow-sm text-center">
+                    <p class="text-gray-600 text-lg">No reviews yet. Be the first to add a review!</p>
+                </li>
+            @endforelse
         </ul>
     </div>
+
+
 @endsection
