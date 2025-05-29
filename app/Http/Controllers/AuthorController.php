@@ -36,7 +36,15 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        //
+        $books = $author->books()
+            ->withAvgRating()
+            ->withReviewsCount()
+            ->get();
+
+        return view('authors.show', [
+            'author' => $author,
+            'books' => $books,
+        ]);
     }
 
     /**

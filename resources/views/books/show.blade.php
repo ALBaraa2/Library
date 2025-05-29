@@ -15,19 +15,19 @@
         <h1 class="sticky top-0 mb-2 text-2xl">{{ $book->title }}</h1>
 
         <div class="book-info">
-        <a href="{{ route('authors.show', $book) }}" class="book-author mb-4 text-lg font-semibold">by {{ $book->author->name }}</a>
-        <div class="text-gray-600 leading-relaxed mb-6">{{ $book->description }}</div>
-        <div class="book-rating flex items-center">
-            <div class="mr-2 text-sm font-medium text-slate-700">
-                @if ($rating != null)
-                    {{ number_format($rating, 1) }}
-                @endif
-            <x-star-rating :rating="$rating ?? 0"/>
+            <a href="{{ route('authors.show', $book->author) }}" class="book-author mb-4 text-lg font-semibold">by {{ $book->author->name }}</a>
+            <div class="text-gray-600 leading-relaxed mb-6">{{ $book->description }}</div>
+            <div class="book-rating flex items-center">
+                <div class="mr-2 text-sm font-medium text-slate-700">
+                    @if ($rating != null)
+                        {{ number_format($rating, 1) }}
+                    @endif
+                <x-star-rating :rating="$rating ?? 0"/>
+                </div>
+                <span class="book-review-count text-sm text-gray-500">
+                {{ $reviewsCount }} {{ Str::plural('review', $reviewsCount) }}
+                </span>
             </div>
-            <span class="book-review-count text-sm text-gray-500">
-            {{ $reviewsCount }} {{ Str::plural('review', $reviewsCount) }}
-            </span>
-        </div>
         </div>
     </div>
 
