@@ -10,7 +10,12 @@
   {{-- blade-formatter-disable --}}
   <style type="text/tailwindcss">
     .btn {
-      @apply bg-white rounded-md px-4 py-2 text-center font-medium text-slate-500 shadow-sm ring-1 ring-slate-700/10 hover:bg-slate-50 h-10;
+      @apply bg-white rounded-md px-4 py-2 text-center font-medium text-slate-500 shadow-sm ring-1 ring-slate-700/10 h-10;
+      @apply transition duration-300;
+    }
+
+    .btn:hover {
+      @apply ring-green-500 text-green-500 bg-green-50;
     }
 
     .btn-cancel {

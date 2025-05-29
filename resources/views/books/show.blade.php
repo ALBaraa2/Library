@@ -4,6 +4,13 @@
 
 @include('alerts.alert')
 
+    <a href="{{ route('books.index') }}" 
+        class="inline-flex items-center gap-1 text-gray-600 font-semibold hover:text-blue-800 transition-colors duration-300 underline decoration-blue-400 hover:decoration-blue-600 mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+        Go back to the task list!
+    </a>
     <div class="mb-4">
         <h1 class="sticky top-0 mb-2 text-2xl">{{ $book->title }}</h1>
 
@@ -26,14 +33,18 @@
 
     <hr class="my-4">
 
-    <div class="mb-10">
-        <a href="{{ route('books.index') }}" class="link">🔙 Go back to the task list!</a>
+    <div class="mb-10 flex flex-wrap items-center gap-6">
+        <a href="{{ route('books.reviews.create', $book) }}" 
+            class="px-4 py-2 bg-blue-300 text-blue-900 rounded-md shadow hover:bg-blue-400 transition">
+            Add a review
+        </a>
+
+        <a href="{{ route('books.edit', $book) }}" 
+            class="px-4 py-2 bg-gray-300 text-gray-900 rounded-md shadow hover:bg-gray-400 transition">
+            Edit
+        </a>
     </div>
 
-    <div class="mb-4 flex space-x-6">
-        <a href="{{ route('books.reviews.create', $book) }}" class="reset-link">Add a review</a>
-        <a href="{{ route('books.edit', $book) }}" class="reset-link">Edit</a>
-    </div>
     <form action="{{ route('books.destroy', $book) }}" method="POST">
         @csrf
         @method('DELETE')
