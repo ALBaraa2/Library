@@ -97,7 +97,18 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'author_id' => 'required|exists:authors,id',
+            'publisher_id' => 'required|exists:publishers,id',
+            'description' => 'nullable|string',
+            'genre' => 'nullable|string',
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        $book->update($request->all());
+
+        return redirect()->route('books.show',$book)->with('success', 'Book updated successfully.');
     }
 
     /**
