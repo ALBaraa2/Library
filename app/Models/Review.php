@@ -25,4 +25,11 @@ class Review extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public static function booted()
+    {
+        Static::created(fn() => cache()->flush());
+        
+        Static::deleted(fn() => cache()->flush());
+    }
 }
