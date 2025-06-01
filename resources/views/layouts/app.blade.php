@@ -106,6 +106,10 @@
     .empty-text {
         @apply text-lg font-semibold text-slate-600 text-center italic;
     }
+
+    .welcome-message {
+        @apply mb-6 p-4 bg-blue-100 text-blue-800 rounded-md shadow-sm;
+    }
   </style>
   {{-- blade-formatter-enable --}}
 </head>
