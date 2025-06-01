@@ -17,13 +17,32 @@
         <div class="mb-6">
             <label for="author" class="block text-gray-700 font-semibold mb-2 text-lg">Author</label>
             <select id="author" name="author_id" required
-            class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-            <option value="" disabled selected>Select an Author</option>
-            @foreach ($authors as $author)
-            <option value="{{ $author->id }}">{{ $author->name }}</option>
-            @endforeach
+                class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                <option value="" disabled selected>Select an Author</option>
+                @foreach ($authors as $author)
+                    <option value="{{ $author->id }}">{{ $author->name }}</option>
+                @endforeach
+                <option value="new" style="background-color: #e0f7fa; color: #00796b; font-weight: bold;">
+                    ➕ Add New Author
+                </option>
             </select>
         </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const authorSelect = document.getElementById('author');
+                authorSelect.addEventListener('change', function () {
+                    if (this.value === 'new') {
+                        const confirmation = confirm("You will be redirected to the Author Creation page. Do you want to proceed?");
+                        if (confirmation) {
+                            window.location.href = "{{ route('authors.create') }}";
+                        } else {
+                            this.value = "";
+                        }
+                    }
+                });
+            });
+        </script>
 
         <div class="mb-6">
             <label for="publisher_id" class="block text-gray-700 font-semibold mb-2 text-lg">Publisher</label>

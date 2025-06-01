@@ -18,9 +18,11 @@ class AuthorController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $request->session()->put('book_form_data', $request->all());
+
+        return view('authors.create');
     }
 
     /**
@@ -28,7 +30,20 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'bio' => 'nullable|string',
+            'contact_info' => 'nullable|string|max:255',
+            'birth_date' => 'nullable|date',
+            'nationality' => 'nullable|string|max:100',
+            'website' => 'nullable|url|max:255',
+            'awards' => 'nullable|string|max:500',
+        ]);
+
+        Author::create($request->all());
+
+        return redirect($request->input('redirect_to', route('books.index')))
+        ->with('success', 'Author created successfully.');
     }
 
     /**
