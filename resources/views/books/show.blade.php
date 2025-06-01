@@ -11,21 +11,33 @@
         </svg>
         Go back to the task list!
     </a>
-    <div class="mb-4">
-        <h1 class="sticky top-0 mb-2 text-2xl">{{ $book->title }}</h1>
+    <div class="mb-8 bg-white p-6 rounded-lg shadow-md border border-gray-200">
+        <h1 class="text-5xl font-extrabold text-gray-900 text-center leading-tight tracking-wide mb-6">
+            <span class="block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text">
+                {{ $book->title }}
+            </span>
+        </h1>
 
-        <div class="book-info">
-            <a href="{{ route('authors.show', $book->author) }}" class="book-author mb-4 text-lg font-semibold">by {{ $book->author->name }}</a>
-            <div class="text-gray-600 leading-relaxed mb-6">{{ $book->description }}</div>
-            <div class="book-rating flex items-center">
-                <div class="mr-2 text-sm font-medium text-slate-700">
+        <div class="text-center space-y-4">
+            <a href="{{ route('authors.show', $book->author) }}" 
+            class="text-xl font-medium text-blue-600 hover:text-blue-800 underline decoration-dotted">
+                by {{ $book->author->name }}
+            </a>
+
+            <p class="text-gray-600 text-lg leading-relaxed">
+                {{ $book->description }}
+            </p>
+
+            <div class="flex justify-center items-center space-x-4">
+                <div class="flex items-center text-2xl font-semibold text-gray-800">
                     @if ($rating != null)
                         {{ number_format($rating, 1) }}
                     @endif
-                <x-star-rating :rating="$rating ?? 0"/>
+                    <x-star-rating :rating="$rating ?? 0" />
                 </div>
-                <span class="book-review-count text-sm text-gray-500">
-                {{ $reviewsCount }} {{ Str::plural('review', $reviewsCount) }}
+
+                <span class="text-lg text-gray-500">
+                    {{ $reviewsCount }} {{ Str::plural('review', $reviewsCount) }}
                 </span>
             </div>
         </div>
