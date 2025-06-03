@@ -120,15 +120,40 @@
     <header class="mb-8">
         <nav class="flex justify-between items-center bg-gray-200 p-4 rounded-md shadow-sm">
             <div>
-                <a href="{{ route('books.index') }}" class="text-xl font-bold text-blue-600">Library</a>
+              <a href="{{ route('books.index') }}" 
+                class="text-2xl font-extrabold text-blue-400 hover:text-blue-600 transition duration-300 
+                  tracking-wide select-none">
+                Library
+              </a>
             </div>
-            <div>
+            <div class="relative">
                 @auth
-                    <form method="POST" action="{{ route('logout') }}" class="inline">
-                        @csrf
-                        <button type="submit" class="btn-cancel">Logout</button>
-                    </form>
+                    <button id="userMenuButton" 
+                        class="flex items-center space-x-2 bg-white text-slate-700 font-medium rounded-md px-4 py-2 shadow-sm ring-1 ring-slate-300 hover:ring-blue-500 hover:text-blue-600 transition duration-300"
+                        onclick="toggleDropdown()">
+                        <span>{{ auth()->user()->name }}</span>
+                        <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50">
+                        <div class="py-1 text-sm text-gray-700">
+                            <div class="px-4 py-2 border-b border-gray-200 font-semibold">
+                                {{ auth()->user()->name }}
+                            </div>
+
+                            {{-- <a href="{{ route('user.books') }}" class="block px-4 py-2 hover:bg-gray-100">My Books</a> --}}
+
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
+                            </form>
+                        </div>
+                    </div>
+
                 @endauth
+
                 @guest
                     <a href="{{ route('login') }}" class="btn">Login</a>
                     <a href="{{ route('register') }}" class="btn">Register</a>
@@ -136,7 +161,24 @@
             </div>
         </nav>
     </header>
+
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.classList.toggle('hidden');
+        }
+
+        // Close dropdown if clicked outside
+        window.addEventListener('click', function(e) {
+            const button = document.getElementById('userMenuButton');
+            const dropdown = document.getElementById('userDropdown');
+            if (!button.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+    </script>
   @endif
+
 
   @yield('content')
 </body>
