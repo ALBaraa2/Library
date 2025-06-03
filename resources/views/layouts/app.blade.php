@@ -7,7 +7,6 @@
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  {{-- blade-formatter-disable --}}
   <style type="text/tailwindcss">
     .btn {
       @apply bg-white rounded-md px-4 py-2 text-center font-medium text-slate-500 shadow-sm ring-1 ring-slate-700/10 h-10;
@@ -111,10 +110,34 @@
         @apply mb-6 p-4 bg-blue-100 text-blue-800 rounded-md shadow-sm;
     }
   </style>
-  {{-- blade-formatter-enable --}}
+
 </head>
 
 <body class="container mx-auto mt-10 mb-10 max-w-3xl">
+  @include('alerts.alert')
+
+  @if (!request()->is('login') && !request()->is('register'))
+    <header class="mb-8">
+        <nav class="flex justify-between items-center bg-gray-200 p-4 rounded-md shadow-sm">
+            <div>
+                <a href="{{ route('books.index') }}" class="text-xl font-bold text-blue-600">Library</a>
+            </div>
+            <div>
+                @auth
+                    <form method="POST" action="{{ route('logout') }}" class="inline">
+                        @csrf
+                        <button type="submit" class="btn-cancel">Logout</button>
+                    </form>
+                @endauth
+                @guest
+                    <a href="{{ route('login') }}" class="btn">Login</a>
+                    <a href="{{ route('register') }}" class="btn">Register</a>
+                @endguest
+            </div>
+        </nav>
+    </header>
+  @endif
+
   @yield('content')
 </body>
 

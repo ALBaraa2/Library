@@ -2,8 +2,6 @@
 
 @section('content')
 
-@include('alerts.alert')
-
     <a href="{{ route('books.index') }}" 
         class="inline-flex items-center gap-1 text-gray-600 font-semibold hover:text-blue-800 transition-colors duration-300 underline decoration-blue-400 hover:decoration-blue-600 mb-4">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

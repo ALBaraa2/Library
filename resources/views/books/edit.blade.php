@@ -2,7 +2,6 @@
 
 @section('content')
 
-@include('alerts.alert')
 <div class="container">
     <h1 class="text-4xl font-bold text-gray-800 text-center mt-5 mb-5 border-b-2 border-blue-500 pb-2">Edit Details for "{{ $book->title }}"</h1>
     <form action="{{ route('books.update', $book) }}" method="POST">

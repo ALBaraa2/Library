@@ -2,26 +2,7 @@
 
 @section('content')
 
-@include('alerts.alert')
-
-@include('partials.user-welcome')
-
-    <div class="flex justify-end mb-4">
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button 
-                type="submit" 
-                class="btn h-10 px-4 bg-red-600 hover:bg-red-700 text-white rounded-md shadow transition-colors duration-200"
-                title="Logout"
-            >
-                Logout
-            </button>
-        </form>
-    </div>
-
     <h1 class="page-title">Books</h1>
-
-    
 
     <form action="{{ route('books.index') }}" method="GET" class="mb-4 flex items-center space-x-1">
         <input type="text" name="title" placeholder="Search by title"
