@@ -5,6 +5,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -17,6 +18,8 @@ Route::resource('books.reviews', ReviewController::class)
     ->only(['create', 'store', 'destroy']);
 
 
-Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('login', [LoginController::class, 'login']);
-Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('login', [AuthController::class, 'showLogin'])->name('show.login');
+Route::get('register', [AuthController::class, 'showRegister'])->name('show.register');
+Route::post('login', [AuthController::class, 'login'])->name('login');
+Route::post('register', [AuthController::class, 'register'])->name('register');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
