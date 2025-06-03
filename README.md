@@ -28,12 +28,12 @@ A web application for managing books, reviews, and user interactions in a librar
 ## Tech Stack
 
 ### Backend
-- **Framework:** Laravel 10
+- **Framework:** Laravel 12
 - **Database:** PostgreSQL
 
 ### Frontend
 - **Styling:** Tailwind CSS, Bootstrap
-- **JavaScript:** Vanilla JS (for dropdowns and interactivity)
+- **JavaScript:** Vanilla JS
 
 ---
 
@@ -99,16 +99,6 @@ A web application for managing books, reviews, and user interactions in a librar
 
 ---
 
-## Screenshots
-
-**Home Page:**
-![Home Page](https://via.placeholder.com/800x400.png?text=Screenshot+of+Home+Page)
-
-**Book Details:**
-![Book Details](https://via.placeholder.com/800x400.png?text=Screenshot+of+Book+Details)
-
----
-
 ## Contribution
 
 Contributions are welcome! To contribute:
@@ -119,13 +109,6 @@ Contributions are welcome! To contribute:
 
 ---
 
-## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-
----
-
 ## Author
 
-- **Albaraa Alsigeli**  
-  GitHub: [ALBaraa2](https://github.com/ALBaraa2)
+- **AlBaraa ALSaiqali** 
