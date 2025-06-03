@@ -32,6 +32,11 @@
             </select>
         </div>
         
+        <div class="mb-4 flex items-center space-x-2">
+            <input type="checkbox" name="anonymous" id="anonymous" value="1" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
+            <label for="anonymous" class="text-gray-700 select-none cursor-pointer">Submit as Anonymous</label>
+        </div>
+        
         <div class="flex space-x-2">
             <button type="submit" class="btn">Add Review</button>
             <a href="{{ route('books.show', $book) }}" class="btn-cancel">Cancel</a>

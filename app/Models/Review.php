@@ -14,6 +14,7 @@ class Review extends Model
         'book_id',
         'rating',
         'comment',
+        'anonymous',
     ];
 
     public function book()

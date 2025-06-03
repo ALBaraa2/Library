@@ -79,7 +79,11 @@
                         <div class="flex items-center justify-between mb-2">
                             <div class="flex items-center gap-2">
                                 <span class="text-lg font-semibold text-gray-600">
-                                    {{ $review->user->name ?? 'Anonymous' }}
+                                    @if ($review->anonymous)
+                                        Anonymous
+                                    @else
+                                        {{ $review->user->name ?? 'Anonymous' }}
+                                    @endif
                                 </span>
                                 <span class="text-gray-500 text-sm">
                                     • {{ $review->created_at->format('M j, Y') }}

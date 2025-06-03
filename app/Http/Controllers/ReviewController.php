@@ -33,12 +33,14 @@ class ReviewController extends Controller
         $request->validate([
             'rating' => 'required|integer|min:1|max:5',
             'comment' => 'required|string|max:1000',
+            'anonymous' => 'boolean',
         ]);
 
         // Merge user_id and book_id into the request data
         $reviewData = $request->only(['rating', 'comment']);
         $reviewData['user_id'] = Auth::id();
         $reviewData['book_id'] = $book->id;
+        $reviewData['anonymous'] = $request->input('anonymous', false); // Default to false if not provided
 
         // Create the review
         Review::create($reviewData);
