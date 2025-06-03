@@ -66,7 +66,12 @@
     </div>
 
     <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="mb-4 text-2xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2">Reviews</h2>
+        <h2 class="mb-4 text-2xl font-bold text-gray-800 border-b-2 border-blue-500 pb-2">
+            Reviews
+            <span class="ml-4 inline-block bg-blue-100 text-blue-700 text-sm font-semibold px-3 py-1 rounded-full shadow-sm">
+                {{ $book->reviews->count() }} {{ Str::plural('Review', $book->reviews->count()) }}
+            </span>
+        </h2>
         <ul class="space-y-6">
             @forelse ($book->reviews as $review)
                 <li class="p-4 bg-gray-50 rounded-lg shadow-sm">
