@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Review;
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
@@ -36,7 +37,7 @@ class ReviewController extends Controller
 
         // Merge user_id and book_id into the request data
         $reviewData = $request->only(['rating', 'comment']);
-        $reviewData['user_id'] = 3; // Replace with `auth()->id()` in real application
+        $reviewData['user_id'] = Auth::id();
         $reviewData['book_id'] = $book->id;
 
         // Create the review
