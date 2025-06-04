@@ -29,7 +29,7 @@ class UserController extends Controller
 
         $user->update($validated);
 
-        return redirect()->route('users.show', $user)->with('success', 'Profile updated successfully.');
+        return redirect()->route('user.show', $user)->with('success', 'Profile updated successfully.');
     }
 
     public function destroy(User $user)
