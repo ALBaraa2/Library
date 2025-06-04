@@ -143,7 +143,7 @@
                                 {{ auth()->user()->name }}
                             </div>
 
-                            {{-- <a href="{{ route('user.books') }}" class="block px-4 py-2 hover:bg-gray-100">My Books</a> --}}
+                            <a href="{{ route('users.show', auth()->user()) }}" class="block px-4 py-2 hover:bg-gray-100">Profile</a>
 
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf

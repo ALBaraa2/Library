@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return redirect()->route('books.index');
@@ -19,6 +19,9 @@ Route::middleware('auth')->group(function () {
         ->scoped(['review' => 'id'])
         ->only(['create', 'store', 'destroy']);
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('{user:name}', [UserController::class, 'show'])->name('users.show');
+    Route::get('{user:name}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::delete('{user:name}', [UserController::class, 'destroy'])->name('users.destroy');
 });
 
 
