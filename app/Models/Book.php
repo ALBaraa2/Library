@@ -117,13 +117,13 @@ class Book extends Model
     protected static function booted()
     {
         static::updated(
-            fn(Book $book) => cache()->flush()
+            fn() => cache()->flush()
         );
         static::deleted(
-            fn(Book $book) => cache()->flush()
+            fn() => cache()->flush()
         );
         static::created(
-            fn(Book $book) => cache()->flush()
+            fn() => cache()->flush()
         );
     }
 }

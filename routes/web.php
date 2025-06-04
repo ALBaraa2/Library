@@ -14,14 +14,16 @@ Route::get('/', function () {
 Route::get('books', [BookController::class, 'index'])->name('books.index');
 Route::middleware('auth')->group(function () {
     Route::resource('books', BookController::class)->except('index');
-    Route::resource('authors', AuthorController::class);
+    Route::resource('authors', AuthorController::class)->except(['edit', 'update', 'destroy']);
     Route::resource('books.reviews', ReviewController::class)
         ->scoped(['review' => 'id'])
         ->only(['create', 'store', 'destroy']);
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('{user:name}', [UserController::class, 'show'])->name('users.show');
-    Route::get('{user:name}/edit', [UserController::class, 'edit'])->name('users.edit');
-    Route::delete('{user:name}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::prefix('profile')->group(function () {
+        Route::get('{user:name}', [UserController::class, 'show'])->name('users.show');
+        Route::get('{user:name}/edit', [UserController::class, 'edit'])->name('users.edit');
+        Route::delete('{user:name}', [UserController::class, 'destroy'])->name('users.destroy');
+    });
 });
 
 
