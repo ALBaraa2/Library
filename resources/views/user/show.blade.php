@@ -29,11 +29,11 @@
             <div class="bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-2xl font-bold text-gray-700 border-b pb-3 mb-4">Actions</h2>
                 <div class="space-y-4">
-                    <a href="{{ route('users.edit', $user) }}"
+                    <a href="{{ route('user.edit', $user) }}"
                        class="block w-full px-4 py-2 text-center text-white bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
                         Edit Information
                     </a>
-                    <form action="{{ route('users.destroy', $user) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete your account?');">
+                    <form action="{{ route('user.destroy', $user) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete your account?');">
                         @csrf
                         @method('DELETE')
                         <button type="submit"

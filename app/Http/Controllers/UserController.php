@@ -16,7 +16,20 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        
+        return view('user.edit', compact('user'));
+    }
+
+    public function update(Request $request, User $user)
+    {
+
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' .$user->id,
+        ]);
+
+        $user->update($validated);
+
+        return redirect()->route('users.show', $user)->with('success', 'Profile updated successfully.');
     }
 
     public function destroy(User $user)

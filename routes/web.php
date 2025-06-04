@@ -20,9 +20,10 @@ Route::middleware('auth')->group(function () {
         ->only(['create', 'store', 'destroy']);
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     Route::prefix('profile')->group(function () {
-        Route::get('{user:name}', [UserController::class, 'show'])->name('users.show');
-        Route::get('{user:name}/edit', [UserController::class, 'edit'])->name('users.edit');
-        Route::delete('{user:name}', [UserController::class, 'destroy'])->name('users.destroy');
+        Route::get('{user:name}', [UserController::class, 'show'])->name('user.show');
+        Route::get('{user:name}/edit', [UserController::class, 'edit'])->name('user.edit');
+        Route::put('{user:name}', [UserController::class, 'update'])->name('user.update');
+        Route::delete('{user:name}', [UserController::class, 'destroy'])->name('user.destroy');
     });
 });
 
