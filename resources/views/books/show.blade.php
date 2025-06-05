@@ -48,18 +48,20 @@
             class="px-4 py-2 bg-blue-300 text-blue-900 rounded-md shadow hover:bg-blue-400 transition">
             Add a review
         </a>
-
-        <a href="{{ route('books.edit', $book) }}" 
-            class="px-4 py-2 bg-gray-300 text-gray-900 rounded-md shadow hover:bg-gray-400 transition">
-            Edit
-        </a>
+        @can('update', $book)
+            <a href="{{ route('books.edit', $book) }}" 
+                class="px-4 py-2 bg-gray-300 text-gray-900 rounded-md shadow hover:bg-gray-400 transition">
+                Edit
+            </a>
+        @endcan
     </div>
-
-    <form action="{{ route('books.destroy', $book) }}" method="POST">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="btn-cancel">Delete this book!</button>
-    </form>
+    @can('delete', $book)
+        <form action="{{ route('books.destroy', $book) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn-cancel">Delete this book!</button>
+        </form>
+    @endcan
 
     <div class="mb-10">
 
@@ -95,14 +97,16 @@
                         </div>
                         <p class="text-gray-700 leading-relaxed">{{ $review->comment }}</p>
                     </div>
-                    <form action="{{ route('books.reviews.destroy', [$book, $review]) }}" method="POST" class="text-right">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit"
-                            class="px-4 py-2 text-sm font-semibold text-red-600 bg-red-100 border border-red-200 rounded-lg shadow-sm transition duration-200 hover:bg-red-200 hover:border-red-300 hover:text-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1">
-                            Delete Review
-                        </button>
-                    </form>
+                    @can('delete', $review)
+                        <form action="{{ route('books.reviews.destroy', [$book, $review]) }}" method="POST" class="text-right">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="px-4 py-2 text-sm font-semibold text-red-600 bg-red-100 border border-red-200 rounded-lg shadow-sm transition duration-200 hover:bg-red-200 hover:border-red-300 hover:text-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1">
+                                Delete Review
+                            </button>
+                        </form>
+                    @endcan
 
                 </li>
             @empty
