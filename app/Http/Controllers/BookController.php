@@ -6,8 +6,6 @@ use App\Models\Book;
 use App\Models\Author;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {

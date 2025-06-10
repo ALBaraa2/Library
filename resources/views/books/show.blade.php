@@ -48,6 +48,13 @@
             class="px-4 py-2 bg-blue-300 text-blue-900 rounded-md shadow hover:bg-blue-400 transition">
             Add a review
         </a>
+
+        <form action="{{ route('borrowedBooks.store', [Auth()->user(), $book]) }}" method="POST">
+            @csrf
+            @method('POST')
+            <button type="submit">Borrow this book</button>
+        </form>
+
         @can('update', $book)
             <a href="{{ route('books.edit', $book) }}" 
                 class="px-4 py-2 bg-gray-300 text-gray-900 rounded-md shadow hover:bg-gray-400 transition">

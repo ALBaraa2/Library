@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BorrowedBooksController;
+use App\Models\BorrowedBooks;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
@@ -27,6 +29,8 @@ Route::middleware('auth')->group(function () {
         Route::put('{user:name}', [UserController::class, 'update'])->name('user.update');
         Route::delete('{user:name}', [UserController::class, 'destroy'])->name('user.destroy')
         ->can('delete', 'user');
+        Route::get('{user:name}/Books', [BorrowedBooksController::class, 'show'])->name('borrowedBooks.show');
+        Route::post('{user:name}/Books/{book}', [BorrowedBooksController::class, 'store'])->name('borrowedBooks.store');
     });
 
     Route::delete('books/{book}/reviews/{review}', [ReviewController::class, 'destroy'])

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Author;
 use App\Models\Publisher;
 use App\Models\Review;
+use App\Models\BorrowedBooks;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 
@@ -40,6 +41,10 @@ class Book extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function borrowedBooks() {
+        return $this->hasMany(BorrowedBooks::class);
     }
 
     public function scopeTitle(Builder $query, String $title): Builder

@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\BorrowedBooks;
 
 class User extends Authenticatable
 {
@@ -36,6 +37,10 @@ class User extends Authenticatable
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function borrowedBooks() {
+        return $this->hasMany(BorrowedBooks::class);
     }
 
     /**
