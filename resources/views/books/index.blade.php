@@ -10,7 +10,9 @@
         <input type="hidden" name="filter" value="{{ request('filter') }}"/>
         <button type="submit" class="btn h-10">Search</button>
         <a href="{{ route('books.index') }}" class="btn h-10 color">Clear</a>
-        <a href="{{ route('books.create') }}" class="btn h-10 color" title="Add Book">Add</a>
+        @can('create_book', Auth()->user())
+          <a href="{{ route('books.create') }}" class="btn h-10 color" title="Add Book">Add</a>
+        @endcan
     </form>
 
     <div class="filter-container mb-4 flex">

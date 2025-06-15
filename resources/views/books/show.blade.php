@@ -49,11 +49,13 @@
             Add a review
         </a>
 
-        <form action="{{ route('borrowedBooks.store', [Auth()->user(), $book]) }}" method="POST">
-            @csrf
-            @method('POST')
-            <button type="submit">Borrow this book</button>
-        </form>
+        @can('borrow', [$book, Auth()->user()])
+            <form action="{{ route('borrowedBooks.store', [Auth()->user(), $book]) }}" method="POST">
+                @csrf
+                @method('POST')
+                <button type="submit">Borrow this book</button>
+            </form>
+        @endcan
 
         @can('update', $book)
             <a href="{{ route('books.edit', $book) }}" 

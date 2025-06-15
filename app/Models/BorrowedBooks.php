@@ -11,6 +11,14 @@ class BorrowedBooks extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'book_id',
+        'borrowed_at',
+        'due_date',
+        'status',
+    ];
+
     public function books() {
         
         return $this->hasMany(Book::class);

@@ -19,8 +19,9 @@ class BorrowedBooksController extends Controller
         return view('borrowedBooks.show', compact('borrowedBooks'));
     }
 
-    public function store(User $user, Book $book) {
-        BorrowedBooks::created([
+    public function store(Request $request, User $user, Book $book) {
+
+        BorrowedBooks::create([
             'user_id' => Auth()->id(),
             'book_id' => $book->id,
             'borrowed_at' => now(),
