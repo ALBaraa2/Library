@@ -43,8 +43,9 @@ class Book extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function borrowedBooks() {
-        return $this->hasMany(BorrowedBooks::class);
+    public function borrowedBooks()
+    {
+        return $this->hasMany(BorrowedBooks::class, 'book_id');
     }
 
     public function scopeTitle(Builder $query, String $title): Builder

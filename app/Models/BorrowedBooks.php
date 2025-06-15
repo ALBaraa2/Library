@@ -19,13 +19,18 @@ class BorrowedBooks extends Model
         'status',
     ];
 
-    public function books() {
-        
-        return $this->hasMany(Book::class);
+    protected $casts = [
+        'borrowed_at' => 'date',
+        'due_date' => 'date',
+    ];
+
+    public function book()
+    {
+        return $this->belongsTo(Book::class, 'book_id');
     }
 
-    public function users() {
-
-        return $this->belongsToMany(User::class);
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

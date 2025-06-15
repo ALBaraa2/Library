@@ -13,8 +13,9 @@ class BorrowedBooksController extends Controller
 {
     public function show(User $user)
     {
-        $borrowedBooks = $user->borrowedBooks()->get();
-        // dd($borrowedBooks->first());
+        $borrowedBooks = $user->borrowedBooks()
+            ->with('book.author', 'book.publisher')
+            ->get();
 
         return view('borrowedBooks.show', compact('borrowedBooks'));
     }
