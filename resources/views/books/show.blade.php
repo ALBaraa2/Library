@@ -45,15 +45,18 @@
 
     <div class="mb-10 flex flex-wrap items-center gap-6">
         <a href="{{ route('books.reviews.create', $book) }}" 
-            class="px-4 py-2 bg-blue-300 text-blue-900 rounded-md shadow hover:bg-blue-400 transition">
+            class="inline-block px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition">
             Add a review
         </a>
 
         @can('borrow', [$book, Auth()->user()])
-            <form action="{{ route('borrowedBooks.store', [Auth()->user(), $book]) }}" method="POST">
+            <form action="{{ route('borrowedBooks.store', [Auth()->user(), $book]) }}" method="POST" class="inline-block">
                 @csrf
                 @method('POST')
-                <button type="submit">Borrow this book</button>
+                <button type="submit"
+                    class="inline-block px-4 py-2 bg-green-500 text-white rounded-md shadow-md hover:bg-green-600 transition">
+                    Borrow this book
+                </button>
             </form>
         @endcan
 
