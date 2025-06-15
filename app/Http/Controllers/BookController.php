@@ -19,7 +19,7 @@ class BookController extends Controller
         $filter = $request->input('filter', '');
 
         $books = Book::when($title, 
-        fn ($query, $title) => $query->where('title', 'like', "%{$title}%"))
+        fn ($query, $title) => $query->where('title', 'ILIKE', "%$title%"))
                  ->when($genre, 
                  fn ($query, $genre) => $query->where('genre', $genre));
 
