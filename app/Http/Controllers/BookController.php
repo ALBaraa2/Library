@@ -15,12 +15,13 @@ class BookController extends Controller
     public function index(Request $request)
     {
         $title = $request->input('title');
+        $genre = $request->input('genre');
         $filter = $request->input('filter', '');
 
-        $books =  Book::when(
-            $title, 
-            fn ($query, $title) => $query->title($title)
-        );
+        $books = Book::when($title, 
+        fn ($query, $title) => $query->where('title', 'like', "%{$title}%"))
+                 ->when($genre, 
+                 fn ($query, $genre) => $query->where('genre', $genre));
 
         $books = match ($filter) {
             'popular_last_month' => $books->popularLastMonth(),
@@ -30,8 +31,8 @@ class BookController extends Controller
             default => $books->latest()->withAvgRating()->withReviewsCount()
         };
 
-        $cacheKey = 'books:' . $filter . ':' . $title . ':page:' . $request->input('page', 1);
-        $books = cache()->remember($cacheKey, 3600, fn() => $books->paginate(10));
+        $cacheKey = 'books:' . $filter . ':' . $title . ':' . $genre . ':page:' . $request->input('page', 1);
+    $books = cache()->remember($cacheKey, 3600, fn() => $books->paginate(10));
 
         return view('books.index', compact('books'));
     }
