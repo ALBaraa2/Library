@@ -20,7 +20,7 @@ class PublisherController extends Controller
      */
     public function create()
     {
-        //
+        return view('publishers.create');
     }
 
     /**
@@ -28,7 +28,15 @@ class PublisherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255|unique:publishers,name',
+            'address' => 'nullable|string|max:255',
+            'contact_info' => 'nullable|max:255|unique:publishers,contact_info',
+        ]);
+
+        $publisher = Publisher::create($validated);
+        return redirect($request->input('redirect_to', route('books.index')))
+        ->with('success', 'Publisher created successfully.');
     }
 
     /**

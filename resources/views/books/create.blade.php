@@ -26,9 +26,25 @@
             </select>
         </div>
 
+        <div class="mb-6">
+            <label for="publisher_id" class="block text-gray-700 font-semibold mb-2 text-lg">Publisher</label>
+            <select id="publisher_id" name="publisher_id" required
+                class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                <option value="" disabled selected>Select a Publisher</option>
+                @foreach ($publishers as $publisher)
+                    <option value="{{ $publisher->id }}">{{ $publisher->name }}</option>
+                @endforeach
+                <option value="new" style="background-color: #e0f7fa; color: #00796b; font-weight: bold;">
+                    ➕ Add New Publisher
+                </option>
+            </select>
+        </div>
+
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const authorSelect = document.getElementById('author');
+                const publisherSelect = document.getElementById('publisher_id');
+
                 authorSelect.addEventListener('change', function () {
                     if (this.value === 'new') {
                         const confirmation = confirm("You will be redirected to the Author Creation page. Do you want to proceed?");
@@ -39,19 +55,19 @@
                         }
                     }
                 });
+
+                publisherSelect.addEventListener('change', function () {
+                    if (this.value === 'new') {
+                        const confirmation = confirm("You will be redirected to the Publisher Creation page. Do you want to proceed?");
+                        if (confirmation) {
+                            window.location.href = "{{ route('publishers.create') }}";
+                        } else {
+                            this.value = "";
+                        }
+                    }
+                });
             });
         </script>
-
-        <div class="mb-6">
-            <label for="publisher_id" class="block text-gray-700 font-semibold mb-2 text-lg">Publisher</label>
-            <select id="publisher_id" name="publisher_id" required
-            class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-            <option value="" disabled selected>Select a Publisher</option>
-            @foreach ($publishers as $publisher)
-            <option value="{{ $publisher->id }}">{{ $publisher->name }}</option>
-            @endforeach
-            </select>
-        </div>
 
         <div class="mb-6">
             <label for="description" class="block text-gray-700 font-semibold mb-2 text-lg">Description</label>

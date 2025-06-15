@@ -2,8 +2,6 @@
 
 @section('content')
 
-@include('alerts.alert')
-
 <div class="container mx-auto max-w-xl p-6 bg-white rounded-lg shadow-md mt-8">
     <h1 class="text-3xl font-bold mb-6 text-center">Add New Author</h1>
 
@@ -78,7 +76,7 @@
         </div>
 
         <div class="flex justify-between">
-            <a href="{{ route('books.index') }}" class="btn-cancel">Cancel</a>
+            <a href="{{ url()->previous() }}" class="btn-cancel">Cancel</a>
             <button type="submit" class="btn">Add Author</button>
         </div>
     </form>

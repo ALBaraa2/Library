@@ -10,7 +10,9 @@ class Publisher extends Model
     use HasFactory;
 
     protected $fillable = [
-        //
+        'name',
+        'address',
+        'contact_info',
     ];
 
     public function books()

@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\BorrowedBooksController;
-use App\Models\BorrowedBooks;
+use App\Http\Controllers\PublisherController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthorController;
@@ -17,6 +17,7 @@ Route::get('books', [BookController::class, 'index'])->name('books.index');
 Route::middleware('auth')->group(function () {
     Route::resource('books', BookController::class)->except('index');
     Route::resource('authors', AuthorController::class)->except(['edit', 'update', 'destroy']);
+    Route::resource('publishers', PublisherController::class)->only(['create', 'store']);
     Route::resource('books.reviews', ReviewController::class)
         ->scoped(['review' => 'id'])
         ->only(['create', 'store']);
