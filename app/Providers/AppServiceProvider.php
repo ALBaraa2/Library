@@ -28,7 +28,8 @@ class AppServiceProvider extends ServiceProvider
 
         Gate::define('borrow', function(User $user, Book $book) {
             $books = $user->borrowedBooks();
-            return $books->where('book_id', '=', $book->id)->count() === 0;
+            return $books->where('book_id', '=', $book->id)->count() === 0 && 
+                   $book->quantity > 0;
         });
     }
 }

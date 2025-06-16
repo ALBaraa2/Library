@@ -30,6 +30,9 @@ class BorrowedBooksController extends Controller
             'status' => 'borrowes'
         ]);
 
+        $book->quantity -= 1;
+        $book->save();
+
         return redirect()->route('borrowedBooks.show', $user)->with('success', 'You Borrowed this books successfuly, It will be returned after 5 days');
     }
 }
