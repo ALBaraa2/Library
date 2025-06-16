@@ -26,11 +26,11 @@ class BorrowedBooksController extends Controller
             'user_id' => Auth()->id(),
             'book_id' => $book->id,
             'borrowed_at' => now(),
-            'due_date' => now()->addDays(5),
+            'due_date' => now()->subDay(),
             'status' => 'borrowed'
         ]);
-
-        $book->quantity -= 1;
+        
+        $book->decrement('quantity', 1);
         $book->save();
 
         return redirect()->route('borrowedBooks.show', $user)->with('success', 'You Borrowed this books successfuly, It will be returned after 5 days');
