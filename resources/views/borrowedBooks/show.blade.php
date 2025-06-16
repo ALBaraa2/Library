@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">My Borrowed Books</h1>
+    <h1 class="page-title-create">My Borrowed Books</h1>
 
     @if(session('success'))
         <div class="bg-green-50 border-l-4 border-green-400 p-4 mb-6 rounded-md shadow-sm">
@@ -36,8 +36,11 @@
                             </span>
                         </div>
                     </div>
-                    <div class="bg-gray-100 p-4 text-right">
-                        <a href="{{ route('books.show', $borrowedBook->book) }}" class="text-blue-600 font-medium hover:underline">
+                    <div class="bg-gray-100 p-4 text-center">
+                        <a href="{{ route('books.show', $borrowedBook->book) }}" class="inline-flex items-center px-6 py-2 bg-gray-600 text-white font-semibold rounded-lg hover:bg-blue-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10 3a1 1 0 00-.894.553L6.382 8H3a1 1 0 000 2h3a1 1 0 01.894.553L9.618 15H7a1 1 0 100 2h6a1 1 0 100-2h-2.618l2.736-4.447A1 1 0 0117 10h3a1 1 0 000-2h-3a1 1 0 01-.894-.553L13.618 3H16a1 1 0 100-2H4a1 1 0 000 2h2.618L8.764 7.447A1 1 0 0111 8h3a1 1 0 100-2h-2.618l-2.736 4.447A1 1 0 017 10H4a1 1 0 000 2h3a1 1 0 01.894.553L9.618 17H7a1 1 0 000 2h6a1 1 0 000-2h-2.618l2.736-4.447A1 1 0 0113 10h3a1 1 0 100-2h-3a1 1 0 01-.894-.553L11.618 3H10z" />
+                            </svg>
                             View Book Details
                         </a>
                     </div>
