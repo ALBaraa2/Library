@@ -27,7 +27,7 @@ class BorrowedBooksController extends Controller
             'book_id' => $book->id,
             'borrowed_at' => now(),
             'due_date' => now()->addDays(5),
-            'status' => 'borrowes'
+            'status' => 'borrowed'
         ]);
 
         $book->quantity -= 1;
