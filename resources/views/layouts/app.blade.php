@@ -109,6 +109,18 @@
     .welcome-message {
         @apply mb-6 p-4 bg-blue-100 text-blue-800 rounded-md shadow-sm;
     }
+
+    .shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    }
+
+    .hover\:scale-105:hover {
+        transform: scale(1.05);
+    }
+
+    .transition-transform {
+        transition: transform 0.3s ease-in-out;
+    }
   </style>
 
 </head>
