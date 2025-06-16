@@ -26,7 +26,7 @@ class BorrowedBooksController extends Controller
             'user_id' => Auth()->id(),
             'book_id' => $book->id,
             'borrowed_at' => now(),
-            'due_date' => Date::parseFromLocale('+5 days'),
+            'due_date' => now()->addDays(5),
             'status' => 'borrowes'
         ]);
 
